@@ -1,0 +1,68 @@
+version: '3'
+services:
+  rstudio:
+    image: rocker/rstudio:latest
+    container_name: "rstudio"
+    restart: always
+    # network_mode: "host"
+    ports:
+      - "8787:8787"
+    volumes:
+      - $HOME/docker_volumes/data_import:/home/rstudio/import
+
+  neo4j:
+    image: neo4j:latest
+    container_name: "neo4j"
+    restart: always
+    ports: 
+      - "7474:7474"
+      - "7687:7687"
+    volumes: 
+      - $HOME/docker_volumes/neo4j/data:/data
+      - $HOME/docker_volumes/neo4j/logs:/logs
+      - $HOME/docker_volumes/data_import:/import
+
+  jupyter:
+    image: jupyter/all-spark-notebook:latest
+    container_name: "jupyter"
+    restart: always
+    ports: 
+      - "8888:8888"
+    volumes: 
+      - $HOME/docker_volumes/jupyter/notebooks:/home/jovyan/work
+
+  coder:
+    image: coder
+    container_name: "coder"
+    restart: always
+    ports: 
+      - "443:443"
+    volumes: 
+      - $HOME/docker_volumes/coder/views:/coder/views
+      - $HOME/docker_volumes/coder/apps:/coder/apps
+      - $HOME/docker_volumes/coder/static:/coder/static
+      - $HOME/docker_volumes/coder/exports:/coder/tmp
+
+  portainer:
+    image: portainer/portainer:latest
+    container_name: "portainer"
+    restart: always
+    ports: 
+      - "9000:9000"
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock 
+      - $HOME/docker_volumes/portainer_data:/data
+
+  # home-assistant:
+  #   image: homeassistant/home-assistant:latest
+  #   container_name: "hass"
+  #   restart: always
+  #   network_mode: "host"
+  #   devices:
+  #     - /dev/ttyACM0
+  #   # depends_on:
+  #   #   - mqtt
+  #   ports:
+  #     - "8123:8123"
+  #   volumes:
+  #     - /home/homeassistant/.homeassistant/:/config
