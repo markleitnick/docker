@@ -84,8 +84,8 @@ services:
       - PUID:1000
       - PGID:1000
     volumes:
-      - /data/plex/config:/config
-      - /data/plex/media/tv:/data/tvshows
-      - /data/plex/media/movies:/data/movies
-      - /data/plex/media/music:/data/music
-      - /data/plex/temp/transcode:/transcode
+      - $HOME/data/plex/config:/config
+      - $HOME/data/plex/media/tv:/data/tvshows
+      - $HOME/data/plex/media/movies:/data/movies
+      - $HOME/data/plex/media/music:/data/music
+      - $HOME/data/plex/temp/transcode:/transcode
