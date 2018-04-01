@@ -1,0 +1,15 @@
+version: '3'
+services:
+  home-assistant:
+    image: homeassistant/home-assistant:latest
+    container_name: "hass"
+    restart: always
+    network_mode: "host"
+    devices:
+      - /dev/cu.usbmodem621
+    # depends_on:
+    #   - mqtt
+    ports:
+      - "8123:8123"
+    volumes:
+      - $HOME/.homeassistant/:/config

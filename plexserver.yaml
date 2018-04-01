@@ -1,0 +1,16 @@
+docker stop plex
+docker rm plex
+docker pull linuxserver/plex
+docker run --detach \
+--restart always \
+--name=plex \
+--net=host \
+-e VERSION=latest \
+-e PUID=1000 \
+-e PGID=1000 \
+-v /Data/Plex/config:/config \
+-v /Data/Plex/media/tv:/data/tvshows \
+-v /Data/Plex/media/movies:/data/movies \
+-v /Data/Plex/media/music:/data/music \
+-v /Data/Plex/temp/transcode:/transcode \
+linuxserver/plex:latest

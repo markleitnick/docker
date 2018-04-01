@@ -53,16 +53,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock 
       - $HOME/docker_volumes/portainer_data:/data
 
-  # home-assistant:
-  #   image: homeassistant/home-assistant:latest
-  #   container_name: "hass"
-  #   restart: always
-  #   network_mode: "host"
-  #   devices:
-  #     - /dev/ttyACM0
-  #   # depends_on:
-  #   #   - mqtt
-  #   ports:
-  #     - "8123:8123"
-  #   volumes:
-  #     - /home/homeassistant/.homeassistant/:/config
+  home-assistant:
+    image: homeassistant/home-assistant:latest
+    container_name: "hass"
+    restart: always
+    network_mode: "host"
+    devices:
+      - /dev/cu.usbmodem621
+    # depends_on:
+    #   - mqtt
+    ports:
+      - "8123:8123"
+    volumes:
+      - $HOME/.homeassistant/:/config
