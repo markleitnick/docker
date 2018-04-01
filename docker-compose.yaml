@@ -89,3 +89,13 @@ services:
       - $HOME/data/plex/media/movies:/data/movies
       - $HOME/data/plex/media/music:/data/music
       - $HOME/data/plex/temp/transcode:/transcode
+
+  dmon:
+    image: philhawthorne/ha-dockermon
+    container_name: dmon
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $HOME/docker_volumes/config:/config
+    ports:
+      - 8126:8126
