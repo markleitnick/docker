@@ -43,6 +43,13 @@ services:
       - $HOME/docker_volumes/coder/static:/coder/static
       - $HOME/docker_volumes/coder/exports:/coder/tmp
 
+  registry:
+    image: registry:latest
+    container_name: "registry"
+    restart: always
+    ports: 
+      - "5000:5000"
+
   portainer:
     image: portainer/portainer:latest
     container_name: "portainer"
