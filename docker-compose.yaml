@@ -26,6 +26,8 @@ services:
     image: jupyter/all-spark-notebook:latest
     container_name: "jupyter"
     restart: always
+    links:
+      - neo4j
     ports: 
       - "8888:8888"
     volumes: 
@@ -36,7 +38,7 @@ services:
     container_name: "coder"
     restart: always
     ports: 
-      - "443:443"
+      - "8881:443"
     volumes: 
       - $HOME/docker_volumes/coder/views:/coder/views
       - $HOME/docker_volumes/coder/apps:/coder/apps
@@ -99,3 +101,11 @@ services:
       - $HOME/docker_volumes/config:/config
     ports:
       - 8126:8126
+
+  rancher:
+    image: rancher/server:preview
+    restart: unless-stopped
+    ports: 
+      - 80:80
+      - 443:443
+
