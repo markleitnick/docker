@@ -33,17 +33,17 @@ services:
     volumes: 
       - $HOME/docker_volumes/jupyter/notebooks:/home/jovyan/work
 
-  coder:
-    image: coder
-    container_name: "coder"
-    restart: always
-    ports: 
-      - "8881:443"
-    volumes: 
-      - $HOME/docker_volumes/coder/views:/coder/views
-      - $HOME/docker_volumes/coder/apps:/coder/apps
-      - $HOME/docker_volumes/coder/static:/coder/static
-      - $HOME/docker_volumes/coder/exports:/coder/tmp
+  # coder:
+  #   image: coder
+  #   container_name: "coder"
+  #   restart: always
+  #   ports: 
+  #     - "8881:443"
+  #   volumes: 
+  #     - $HOME/docker_volumes/coder/views:/coder/views
+  #     - $HOME/docker_volumes/coder/apps:/coder/apps
+  #     - $HOME/docker_volumes/coder/static:/coder/static
+  #     - $HOME/docker_volumes/coder/exports:/coder/tmp
 
   registry:
     image: registry:latest
